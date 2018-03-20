@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>ToDoList—最简单的待办事项列表</title>
+<meta name="description" content="ToDoList" />
+<link rel="stylesheet" href="../css/todoList.css">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body>
+	<header>
+		<section>
+			<div class="app">
+				<label for="title">{{title}}</label> <input type="text"
+					placeholder="添加ToDo" v-model="newTodo" @keyup.enter="addNewTodo" />
+			</div>
+		</section>
+	</header>
+	<section>
+		<h2 onclick="save()">
+			正在进行 <span id="todocount"></span>
+		</h2>
+		<div class="app1">
+			<ol>
+				<li v-for="todo in todosing" class="demo-box">{{ todo.text }}</li>
+			</ol>
+			<h2>
+				已经完成 <span id="donecount"></span>
+			</h2>
+			<ul id="donelist">
+				<li v-for="todo in todosed" class="demo-box">{{ todo.text }}</li>
+			</ul>
+		</div>
+	</section>
+	<footer>
+		Copyright &copy; 2018 <a href="javascript:clear();">clear</a>
+	</footer>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el : '.app',
+		data : {
+			title : 'todoList',
+			newTodo : '',
+			todosing : [ {
+				text : '学习 JavaScript'
+			}, {
+				text : '学习 Vue'
+			}, {
+				text : '整个牛项目'
+			} ],
+			todosed : [ {
+				text : '学习 JavaScript1'
+			}, {
+				text : '学习 Vue1'
+			}, {
+				text : '整个牛项目1'
+			} ]
+		},
+		methods : {
+			todoFinish : function(todo) {
+				console.log(todo);
+				todo.isFinished = !todo.isFinished;
+			},
+			addNewTodo : function() {
+				this.todos.push({
+					text : this.newTodo,
+					isFinished : false
+				});
+				this.newTodo = "";
+			}
+		}
+	})
+	
+	var vm = new Vue({
+		el : '.app1',
+		data : {
+			title : 'todoList',
+			newTodo : '',
+			todosing : [ {
+				text : '学习 JavaScript'
+			}, {
+				text : '学习 Vue'
+			}, {
+				text : '整个牛项目'
+			} ],
+			todosed : [ {
+				text : '学习 JavaScript1'
+			}, {
+				text : '学习 Vue1'
+			}, {
+				text : '整个牛项目1'
+			} ]
+		},
+		methods : {
+			todoFinish : function(todo) {
+				console.log(todo);
+				todo.isFinished = !todo.isFinished;
+			},
+			addNewTodo : function() {
+				this.todos.push({
+					text : this.newTodo,
+					isFinished : false
+				});
+				this.newTodo = "";
+			}
+		}
+	})
+</script>
+</html>
