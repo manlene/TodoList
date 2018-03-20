@@ -5,11 +5,6 @@ import java.sql.Date;
 
 public class ToDoList implements Serializable{
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 339677503643013129L;
-
     private Integer listId;
 
     private String listContent;
