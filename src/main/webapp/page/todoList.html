@@ -8,106 +8,92 @@
 <meta name="description" content="ToDoList" />
 <link rel="stylesheet" href="../css/todoList.css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 
 </head>
 <body>
-	<header>
-		<section>
-			<div class="app">
+	<div id="app">
+		<header>
+			<section>
+
 				<label for="title">{{title}}</label> <input type="text"
 					placeholder="添加ToDo" v-model="newTodo" @keyup.enter="addNewTodo" />
-			</div>
-		</section>
-	</header>
-	<section>
-		<h2 onclick="save()">
-			正在进行 <span id="todocount"></span>
-		</h2>
-		<div class="app1">
+
+			</section>
+		</header>
+		<section>
+			<h2  v-on:click="httpGet">
+				正在进行 <span id="todocount">1</span>
+			</h2>
 			<ol>
-				<li v-for="todo in todosing" class="demo-box">{{ todo.text }}</li>
+				<li v-for="todo in todosing" class="demo-box">
+				     <input type="checkbox" onchange="">{{ todo.text }}
+				     <span>{{todo.createTime}}</span>
+				</li>
 			</ol>
 			<h2>
-				已经完成 <span id="donecount"></span>
+				已经完成 <span id="donecount">2</span>
 			</h2>
 			<ul id="donelist">
-				<li v-for="todo in todosed" class="demo-box">{{ todo.text }}</li>
+				<li v-for="todo in todosed" class="demo-box">
+				  <input type="checkbox" onchange="">{{ todo.text }}
+				  <span>{{todo.createTime}}</span>
+				</li>
 			</ul>
-		</div>
-	</section>
-	<footer>
-		Copyright &copy; 2018 <a href="javascript:clear();">clear</a>
-	</footer>
+		</section>
+	</div>
 </body>
 <script type="text/javascript">
 	var vm = new Vue({
-		el : '.app',
+		el : '#app',
 		data : {
 			title : 'todoList',
 			newTodo : '',
+			newTodoCreateTime:'',
+			todos : [],
+			requestUrl: 'http://localhost:9999/ToDoListVue',
 			todosing : [ {
-				text : '学习 JavaScript'
+				text : '学习 JavaScript',
+				createTime:'2018-03-20'
 			}, {
-				text : '学习 Vue'
+				text : '学习 Vue',
+				createTime:'2018-03-20'
 			}, {
-				text : '整个牛项目'
+				text : '整个牛项目',
+				createTime:'2018-03-20'
 			} ],
 			todosed : [ {
-				text : '学习 JavaScript1'
+				text : '学习 JavaScript1',
+				createTime:'2018-03-20'
 			}, {
-				text : '学习 Vue1'
+				text : '学习 Vue1',
+				createTime:'2018-03-20'
 			}, {
-				text : '整个牛项目1'
+				text : '整个牛项目1',
+				createTime:'2018-03-20'
 			} ]
 		},
 		methods : {
-			todoFinish : function(todo) {
-				console.log(todo);
-				todo.isFinished = !todo.isFinished;
-			},
-			addNewTodo : function() {
-				this.todos.push({
+			addNewTodo:function() {
+				this.todosing.push({
 					text : this.newTodo,
-					isFinished : false
+					createTime:new Date()
 				});
 				this.newTodo = "";
-			}
-		}
-	})
-	
-	var vm = new Vue({
-		el : '.app1',
-		data : {
-			title : 'todoList',
-			newTodo : '',
-			todosing : [ {
-				text : '学习 JavaScript'
-			}, {
-				text : '学习 Vue'
-			}, {
-				text : '整个牛项目'
-			} ],
-			todosed : [ {
-				text : '学习 JavaScript1'
-			}, {
-				text : '学习 Vue1'
-			}, {
-				text : '整个牛项目1'
-			} ]
+			},
+			httpGet() {
+		        this.$http.get(this.requestUrl+"/getAllList").then(response => {
+		          console.log(response.data)
+		          this.todosing=response.data;
+		        }, response => {
+		          console.log(response.data)
+		        })
+		     }
+			
 		},
-		methods : {
-			todoFinish : function(todo) {
-				console.log(todo);
-				todo.isFinished = !todo.isFinished;
-			},
-			addNewTodo : function() {
-				this.todos.push({
-					text : this.newTodo,
-					isFinished : false
-				});
-				this.newTodo = "";
-			}
-		}
+		mounted: function () {
+		      this.httpGet();
+	    }
 	})
 </script>
 </html>
