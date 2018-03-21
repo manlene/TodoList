@@ -8,5 +8,5 @@ public interface TodoListDao{
 
     List<ToDoList> selectAllList();
     
-    Integer addTodoList(ToDoList toDoList);
+    void insert(ToDoList toDoList);
 }

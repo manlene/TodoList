@@ -7,7 +7,7 @@
 		<id column="list_id" property="listId" jdbcType="INTEGER" />
 		<result column="list_content" property="listContent" jdbcType="VARCHAR" />
 		<result column="list_status" property="listStatus" jdbcType="INTEGER" />
-		<result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<!-- 查询单条记录 -->
@@ -16,8 +16,8 @@
 	</select>
 	<insert id="insert" parameterType="com.mm.blogvue.model.ToDoList" >
   
-    insert into t_todo_list(list_id, list_content, list_status,creat_time,update_time)
+    insert into t_todo_list(list_id, list_content, list_status,create_time,update_time)
     values (#{listId,jdbcType=INTEGER}, #{listContent,jdbcType=VARCHAR}, #{listStatus,jdbcType=INTEGER}, 
-      #{creatTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
 </mapper>

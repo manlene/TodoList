@@ -8,36 +8,29 @@
 <meta name="description" content="ToDoList" />
 <link rel="stylesheet" href="../css/todoList.css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 
 </head>
 <body>
 	<div id="app">
 		<header>
 			<section>
-
 				<label for="title">{{title}}</label> <input type="text"
 					placeholder="添加ToDo" v-model="newTodo" @keyup.enter="addNewTodo" />
-
 			</section>
 		</header>
 		<section>
-			<h2  v-on:click="httpGet">
-				正在进行 <span id="todocount">1</span>
-			</h2>
+			<h2>正在进行</h2>
 			<ol>
-				<li v-for="todo in todosing" class="demo-box">
-				     <input type="checkbox" onchange="">{{ todo.text }}
-				     <span>{{todo.createTime}}</span>
+				<li v-for="todo in todosing" class="demo-box"><input
+					type="checkbox" onchange="">{{ todo.listContent }} <span>{{todo.createTime}}</span>
 				</li>
 			</ol>
-			<h2>
-				已经完成 <span id="donecount">2</span>
-			</h2>
+			<h2>已经完成</h2>
 			<ul id="donelist">
-				<li v-for="todo in todosed" class="demo-box">
-				  <input type="checkbox" onchange="">{{ todo.text }}
-				  <span>{{todo.createTime}}</span>
+				<li v-for="todo in todosed" class="demo-box"><input
+					type="checkbox" onchange="">{{ todo.listContent }} <span>{{todo.createTime}}</span>
 				</li>
 			</ul>
 		</section>
@@ -47,44 +40,39 @@
 	var vm = new Vue({
 		el : '#app',
 		data : {
-			title : 'todoList',
-			newTodo : '',
+			title:'todoList',
+			newTodo:'',
 			newTodoCreateTime:'',
-			todos : [],
-			requestUrl: 'http://localhost:9999/ToDoListVue',
-			todosing : [ {
-				text : '学习 JavaScript',
-				createTime:'2018-03-20'
-			}, {
-				text : '学习 Vue',
-				createTime:'2018-03-20'
-			}, {
-				text : '整个牛项目',
-				createTime:'2018-03-20'
-			} ],
-			todosed : [ {
-				text : '学习 JavaScript1',
-				createTime:'2018-03-20'
-			}, {
-				text : '学习 Vue1',
-				createTime:'2018-03-20'
-			}, {
-				text : '整个牛项目1',
-				createTime:'2018-03-20'
-			} ]
+			todos: [],
+			requestUrl:'http://localhost:9999/ToDoListVue',
+			todosing:[],
+			todosed:[]
 		},
 		methods : {
 			addNewTodo:function() {
-				this.todosing.push({
-					text : this.newTodo,
-					createTime:new Date()
-				});
-				this.newTodo = "";
+				 var json={  
+						'listContent':this.newTodo,
+						'createTime':new Date()
+				 }
+				 this.$http.post(this.requestUrl+"/addList",json).then(response => {
+					  	this.getAllList();
+						this.newTodo = "";			          
+			        }, response => {
+			          console.log(response.data)
+			     })
 			},
-			httpGet() {
+			getAllList() {
 		        this.$http.get(this.requestUrl+"/getAllList").then(response => {
-		          console.log(response.data)
-		          this.todosing=response.data;
+		          var lists=response.data
+		          for (var i = 0; i < lists.length; i++) {
+					 var list=lists[i];
+					 if (list.listStatus==1) {
+						 this.todosing.push({listContent:list.listContent,createTime:list.createTime});
+					 }else{
+						 this.todosed.push({listContent:list.listContent,createTime:list.createTime});
+					 }
+				  }
+		          
 		        }, response => {
 		          console.log(response.data)
 		        })
@@ -92,7 +80,7 @@
 			
 		},
 		mounted: function () {
-		      this.httpGet();
+		      this.getAllList();
 	    }
 	})
 </script>

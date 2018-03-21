@@ -1,9 +1,6 @@
-package com.mm.blogvue.model;
+package com.mm.blogvue.command;
 
-import java.io.Serializable;
-import java.sql.Date;
-
-public class ToDoList implements Serializable{
+public class TodoListCommand{
 
     private Integer listId;
 
@@ -11,9 +8,9 @@ public class ToDoList implements Serializable{
 
     private Integer listStatus;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
+    private String updateTime;
 
     public Integer getListId(){
         return listId;
@@ -39,19 +36,19 @@ public class ToDoList implements Serializable{
         this.listStatus = listStatus;
     }
 
-    public Date getCreateTime(){
+    public String getCreateTime(){
         return createTime;
     }
 
-    public void setCreateTime(Date createTime){
+    public void setCreateTime(String createTime){
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime(){
+    public String getUpdateTime(){
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime){
+    public void setUpdateTime(String updateTime){
         this.updateTime = updateTime;
     }
 

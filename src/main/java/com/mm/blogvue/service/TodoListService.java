@@ -2,11 +2,12 @@ package com.mm.blogvue.service;
 
 import java.util.List;
 
+import com.mm.blogvue.command.TodoListCommand;
 import com.mm.blogvue.model.ToDoList;
 
 public interface TodoListService{
 
-    List<ToDoList> selectAllList();
+    List<TodoListCommand> selectAllList();
 
-    Integer addTodoList(ToDoList toDoList);
+    void addTodoList(ToDoList toDoList);
 }
