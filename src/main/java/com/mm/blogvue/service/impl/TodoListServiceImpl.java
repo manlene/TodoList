@@ -2,6 +2,7 @@ package com.mm.blogvue.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,6 +45,13 @@ public class TodoListServiceImpl implements TodoListService{
     public void addTodoList(ToDoList toDoList){
         toDoList.setListStatus(1);
         todoListDao.insert(toDoList);
+    }
+
+    public void updateListStatusById(ToDoList toDoList){
+        toDoList.setUpdateTime(new Date());
+        toDoList.setListStatus(2);
+        todoListDao.updateListStatusById(toDoList);
+        
     }
 
 }

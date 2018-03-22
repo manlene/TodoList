@@ -20,4 +20,10 @@
     values (#{listId,jdbcType=INTEGER}, #{listContent,jdbcType=VARCHAR}, #{listStatus,jdbcType=INTEGER}, 
     #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
+  
+  <update id="updateListStatusById" parameterType="com.mm.blogvue.model.ToDoList" >
+  
+    update  t_todo_list set list_status= #{listStatus,jdbcType=INTEGER},
+    update_time=#{updateTime,jdbcType=TIMESTAMP} where list_id=#{listId,jdbcType=INTEGER}
+  </update>
 </mapper>

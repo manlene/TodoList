@@ -24,13 +24,13 @@
 			<h2>正在进行</h2>
 			<ol>
 				<li v-for="todo in todosing" class="demo-box"><input
-					type="checkbox" onchange="">{{ todo.listContent }} <span>{{todo.createTime}}</span>
+					type="checkbox" v-on:click.stop.prevent="updateTodo(todo)" v-bind:id="todo.listId">{{todo.listContent}} <span>{{todo.createTime}}</span>
 				</li>
 			</ol>
 			<h2>已经完成</h2>
 			<ul id="donelist">
 				<li v-for="todo in todosed" class="demo-box"><input
-					type="checkbox" onchange="">{{ todo.listContent }} <span>{{todo.createTime}}</span>
+					type="checkbox"  >{{ todo.listContent }} <span>{{todo.createTime}}</span>
 				</li>
 			</ul>
 		</section>
@@ -67,16 +67,31 @@
 		          for (var i = 0; i < lists.length; i++) {
 					 var list=lists[i];
 					 if (list.listStatus==1) {
-						 this.todosing.push({listContent:list.listContent,createTime:list.createTime});
+						 this.todosing.push({listContent:list.listContent,createTime:list.createTime,listId:list.listId});
 					 }else{
-						 this.todosed.push({listContent:list.listContent,createTime:list.createTime});
+						 this.todosed.push({listContent:list.listContent,createTime:list.createTime,listId:list.listId});
 					 }
 				  }
 		          
 		        }, response => {
 		          console.log(response.data)
 		        })
-		     }
+		     },
+		     updateTodo:function(todo) {
+		    	 console.log(todo.listId)
+				 var json={  
+						'listId':todo.listId
+				 }
+				 this.$http.post(this.requestUrl+"/updateTodoListById",json).then(response => {
+					 this.removeTodosing(todo);
+				     this.todosed.push(todo);
+				 }, response => {
+			          console.log(response.data)
+			     })
+			},
+			removeTodosing: function (todo) {
+			      this.todosing.splice(this.todosing.indexOf(todo), 1)
+			}
 			
 		},
 		mounted: function () {

@@ -47,4 +47,12 @@ public class TodoListController{
 //        }
         todoListService.addTodoList(toDoList);
     }
+    
+    
+    @RequestMapping("/updateTodoListById")
+    @ResponseBody
+    public void  updateTodoListById(HttpServletResponse response,@RequestBody ToDoList toDoList,HttpServletRequest request){
+
+        todoListService.updateListStatusById(toDoList);
+    }
 }
