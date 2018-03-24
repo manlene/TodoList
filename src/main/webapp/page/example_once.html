@@ -7,18 +7,15 @@
 </head>
 <body>
     <div id="app">
-      <h2>{{ number + 1 }}</h2>
-	  <h2>{{ ok ? 'YES' : 'NO' }}</h2>
-	  <h2>{{ message.split('').reverse().join('') }}</h2>
+       <span>{{ message}}</span>
     </div>
+    
 </body>
 <script type="text/javascript">
 	var vm = new Vue({
 	   el:"#app",
 	   data:{
-		  number:6,
-		  ok:true,
-		  message:'I LOVE U'
+		   message:'hello vue',
 	   }
    });
 </script>

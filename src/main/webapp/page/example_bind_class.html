@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+	    <span v-for="book in books"v-bind:class="{green: book.isFinished, red:!book.isFinished }">{{book.bookName}} </span>
+	 	<div v-show="true">aaa</div>
+	</div>
+</body>
+<script type="text/javascript">
+var vm = new Vue({
+	   el:"#app",
+	   data:{
+		   books:[{bookName:'java',isFinished:true},
+			      {bookName:'vue',isFinished:false},
+			      {bookName:'spring',isFinished:true}]
+	   }
+});	
+</script>
+<style>
+.green{color: green}
+.red{color: red}
+</style>
+</html>

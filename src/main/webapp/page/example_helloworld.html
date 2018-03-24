@@ -6,16 +6,17 @@
 <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
-    <div class="static"
-     v-bind:class="{ active: isActive, 'text-danger': hasError }">
-	</div>
+    <div id="app">
+       <span>{{ message }}</span><br>
+    </div>
+    
 </body>
 <script type="text/javascript">
 	var vm = new Vue({
-	   el:"#app",
+		el:"#app",
+	   //el:document.getElementById("app"),
 	   data:{
-		   isActive:true,
-		   hasError:false
+		   message:'hello world',
 	   }
    });
 </script>

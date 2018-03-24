@@ -22,8 +22,8 @@
 		<section>
 			<h2>正在进行</h2>
 			<ol>
-				<li v-for="todo in todosing" class="demo-box"><input
-					type="checkbox" v-on:click.stop.prevent="updateTodo(todo)" v-bind:value="todo.listId">{{todo.listContent}} <span>{{todo.createTime}}</span>
+				<li v-for="todo in todosing" class="demo-box"><input v-bind:key="todo.listId"
+					type="checkbox" v-on:click="updateTodo(todo)" v-bind:value="todo.listId">{{todo.listContent}} <span>{{todo.createTime}}</span>
 				</li>
 			</ol>
 			<h2>已经完成</h2>

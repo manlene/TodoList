@@ -7,18 +7,15 @@
 </head>
 <body>
     <div id="app">
-       <span>{{ message }}</span><br>
-       <span v-once>{{ message1 }}</span>
+       <p>{{message}}</p> 
+       <input v-model="message"/>
     </div>
-    
 </body>
 <script type="text/javascript">
 	var vm = new Vue({
-		el:"#app",
-	   //el:document.getElementById("app"),
+	   el:"#app",
 	   data:{
-		   message:'hello world',
-		   message1:'hello vue',
+		   message:'hello world'
 	   }
    });
 </script>
