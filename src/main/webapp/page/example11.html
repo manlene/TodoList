@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div class="static"
+     v-bind:class="{ active: isActive, 'text-danger': hasError }">
+	</div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+	   el:"#app",
+	   data:{
+		   isActive:true,
+		   hasError:false
+	   }
+   });
+</script>
+</html>
