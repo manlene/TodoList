@@ -7,8 +7,7 @@
 <title>ToDoList—最简单的待办事项列表</title>
 <meta name="description" content="ToDoList" />
 <link rel="stylesheet" href="../css/todoList.css">
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script
+<script type="text/javascript" src="../js/vue.js"></script><script
 	src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 
 </head>
@@ -24,7 +23,7 @@
 			<h2>正在进行</h2>
 			<ol>
 				<li v-for="todo in todosing" class="demo-box"><input
-					type="checkbox" v-on:click.stop.prevent="updateTodo(todo)" v-bind:id="todo.listId">{{todo.listContent}} <span>{{todo.createTime}}</span>
+					type="checkbox" v-on:click.stop.prevent="updateTodo(todo)" v-bind:value="todo.listId">{{todo.listContent}} <span>{{todo.createTime}}</span>
 				</li>
 			</ol>
 			<h2>已经完成</h2>
@@ -78,7 +77,6 @@
 		        })
 		     },
 		     updateTodo:function(todo) {
-		    	 console.log(todo.listId)
 				 var json={  
 						'listId':todo.listId
 				 }

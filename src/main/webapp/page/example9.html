@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <h1>{{html}}</h1> 
+       <h1 v-html="html"></h1>
+    </div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+	   el:"#app",
+	   data:{
+		   html:'<span style="color: red">This is red</span>'
+	   }
+   });
+</script>
+</html>

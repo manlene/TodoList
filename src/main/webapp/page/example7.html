@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <p>{{message}}</p> 
+       <button v-on:click="showTime">show Time</button>
+    </div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+	   el:"#app",
+	   data:{
+		   message:'hello world'
+	   },
+	   methods:{
+		   showTime(){
+			  this.message= new Date().toLocaleString();
+		   }
+	   }
+   });
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <ul v-for="student in students">
+      		<li><span>姓名: {{student.name}}</span></li>
+      		<li><span>年龄: {{student.age}}</span></li>
+      		<li> 
+      		<span>爱好:</span>
+      		<ol sytle="margin-left: 5px;">
+	        	<li v-for="hobby in student.hobbies">
+	        		{{hobby}}
+	      		</li>
+      		</ol>
+      </ul>
+    </div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+	   el:"#app",
+	   data:{
+		   students:[
+			   {name:'小明',age:'18',hobbies:['吃饭','睡觉','打豆豆']},
+			   {name:'小华',age:'20',hobbies:['唱歌','跳舞','书法']},
+			   {name:'小红',age:'21',hobbies:['唱歌','弹琴','打游戏']}
+		   ]
+		        
+	   }
+   });
+</script>
+</html>

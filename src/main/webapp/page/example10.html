@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <h2>{{ number + 1 }}</h2>
+	  <h2>{{ ok ? 'YES' : 'NO' }}</h2>
+	  <h2>{{ message.split('').reverse().join('') }}</h2>
+    </div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+	   el:"#app",
+	   data:{
+		  number:6,
+		  ok:true,
+		  message:'I LOVE U'
+	   }
+   });
+</script>
+</html>

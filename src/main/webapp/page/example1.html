@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <span>{{ message }}</span><br>
+       <span v-once>{{ message1 }}</span>
+    </div>
+    
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:"#app",
+	   //el:document.getElementById("app"),
+	   data:{
+		   message:'hello world',
+		   message1:'hello vue',
+	   }
+   });
+</script>
+</html>

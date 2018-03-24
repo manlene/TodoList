@@ -23,7 +23,7 @@
 
    <!-- 对模型视图添加前后缀 -->
    <mvc:resources location="/" mapping="/**/*.html"/>
-   
    <mvc:resources location="/css/"  mapping="/css/**" />
+   <mvc:resources location="/js/"  mapping="/js/**" />
    
 </beans>
