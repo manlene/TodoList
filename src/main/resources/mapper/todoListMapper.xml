@@ -12,18 +12,22 @@
 	</resultMap>
 	<!-- 查询单条记录 -->
 	<select id="selectAllList" resultMap="BaseResultMap">
-		SELECT * FROM t_todo_list 
+		SELECT * FROM t_todo_list
 	</select>
-	<insert id="insert" parameterType="com.mm.blogvue.model.ToDoList" >
-  
-    insert into t_todo_list(list_id, list_content, list_status,create_time,update_time)
-    values (#{listId,jdbcType=INTEGER}, #{listContent,jdbcType=VARCHAR}, #{listStatus,jdbcType=INTEGER}, 
-    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  
-  <update id="updateListStatusById" parameterType="com.mm.blogvue.model.ToDoList" >
-  
-    update  t_todo_list set list_status= #{listStatus,jdbcType=INTEGER},
-    update_time=#{updateTime,jdbcType=TIMESTAMP} where list_id=#{listId,jdbcType=INTEGER}
-  </update>
+	<insert id="insert" parameterType="com.mm.blogvue.model.ToDoList"
+		keyProperty="listId" useGeneratedKeys="true">
+
+		insert into t_todo_list(list_id, list_content,
+		list_status,create_time,update_time)
+		values (#{listId,jdbcType=INTEGER}, #{listContent,jdbcType=VARCHAR},
+		#{listStatus,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="updateListStatusById" parameterType="com.mm.blogvue.model.ToDoList">
+
+		update t_todo_list set list_status= #{listStatus,jdbcType=INTEGER},
+		update_time=#{updateTime,jdbcType=TIMESTAMP} where
+		list_id=#{listId,jdbcType=INTEGER}
+	</update>
 </mapper>

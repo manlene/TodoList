@@ -54,8 +54,9 @@
 						'createTime':new Date()
 				 }
 				 this.$http.post(this.requestUrl+"/addList",json).then(response => {
-					  	this.getAllList();
-						this.newTodo = "";			          
+					 this.newTodo='';
+					 var list=response.data;
+					 this.todosing.push({listContent:list.listContent,createTime:list.createTime,listId:list.listId});
 			        }, response => {
 			          console.log(response.data)
 			     })

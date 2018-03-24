@@ -15,7 +15,7 @@ public interface TodoListService{
      * 新增todolist
      * @param toDoList
      */
-    void addTodoList(ToDoList toDoList);
+    ToDoList addTodoList(ToDoList toDoList);
     /**
      * 根据id更新todolist状态
      * @param toDoList

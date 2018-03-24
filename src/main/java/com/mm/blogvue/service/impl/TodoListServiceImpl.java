@@ -29,11 +29,11 @@ public class TodoListServiceImpl implements TodoListService{
             ToDoList toDoList = (ToDoList) iterator.next();
             BeanUtils.copyProperties(toDoList, todoListCommand);
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd ");
-            if (toDoList.getCreateTime()!=null){
+            if (toDoList.getCreateTime() != null){
                 String createTime = formatter.format(toDoList.getCreateTime());
                 todoListCommand.setCreateTime(createTime);
             }
-            if (toDoList.getUpdateTime()!=null){
+            if (toDoList.getUpdateTime() != null){
                 String updateTime = formatter.format(toDoList.getUpdateTime());
                 todoListCommand.setUpdateTime(updateTime);
             }
@@ -42,16 +42,17 @@ public class TodoListServiceImpl implements TodoListService{
         return listCommands;
     }
 
-    public void addTodoList(ToDoList toDoList){
+    public ToDoList addTodoList(ToDoList toDoList){
         toDoList.setListStatus(1);
         todoListDao.insert(toDoList);
+        return toDoList;
     }
 
     public void updateListStatusById(ToDoList toDoList){
         toDoList.setUpdateTime(new Date());
         toDoList.setListStatus(2);
         todoListDao.updateListStatusById(toDoList);
-        
+
     }
 
 }
